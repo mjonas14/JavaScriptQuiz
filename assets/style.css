@@ -33,7 +33,7 @@ h2 {
     margin: 0 30% 0 30%;
 }
 
-button {
+.start-button, #buttons {
     font-size: 20px;
     cursor: pointer;
     justify-items: center;
@@ -52,3 +52,14 @@ button {
     font-size: 15px;
 }
 
+.input {
+    width: 200px;
+    height: 20px; 
+    margin-top: 20px;
+}
+
+.submit {
+    width: 100px;
+    height: 28px;
+    margin: 20px 5px 5px 5px;
+}

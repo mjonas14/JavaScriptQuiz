@@ -97,6 +97,18 @@ function inputInitials() {
 
   qOptionsEls.style.display = 'none';
   body.textContent = 'Please input your intials';
+
+  var formEl = document.createElement('form');
+  var inputEl = document.createElement('input');
+  var submitEl = document.createElement('button');
+
+  inputEl.classList.add('input');
+  submitEl.classList.add('submit');
+  submitEl.textContent = 'Submit';
+
+  body.appendChild(formEl);
+  formEl.appendChild(inputEl);
+  formEl.appendChild(submitEl);
 }
 
 
