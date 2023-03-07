@@ -109,6 +109,51 @@ function inputInitials() {
   body.appendChild(formEl);
   formEl.appendChild(inputEl);
   formEl.appendChild(submitEl);
+
+  submitEl.addEventListener('click', function() {
+
+    console.log(inputEl);
+    console.log(inputEl.textContent);
+    localStorage.setItem('Name',inputEl);
+    finalScreen();
+
+  });
+}
+
+function finalScreen() {
+  body.textContent = 'What would you like to do?';
+
+  var formEl2 = document.createElement('form');
+  var restartBtn = document.createElement('button');
+  var scoreBtn = document.createElement('button');
+
+  restartBtn.classList.add('start-button');
+  scoreBtn.classList.add('start-button');
+  restartBtn.style.marginTop = '40px;'
+  scoreBtn.style.marginTop = '40px;'
+  restartBtn.textContent = 'Restart Quiz';
+  scoreBtn.textContent = 'Scoreboard';
+
+  body.appendChild(formEl2);
+  formEl2.appendChild(restartBtn);
+  formEl2.appendChild(scoreBtn);
+
+  // If restart button is clicked, restart the quiz
+  restartBtn.addEventListener('click', function() {
+
+    qNumber = 0;
+    score = 0; 
+    secondsLeft = 60;
+    generateQuestion();
+    startTime();
+  })
+
+  scoreBtn.addEventListener('click', function() {
+
+    body.textContent = 'Scoreboard:';
+
+  }) 
+
 }
 
 
@@ -117,12 +162,14 @@ function inputInitials() {
 function startTime() {
     var timerInterval = setInterval(function() {
         secondsLeft--;
-        timeEl.textContent = 'Time Remaining: ' + secondsLeft;
-    
-        if(secondsLeft === 0) {
+        
+        if(secondsLeft <= 0) {
           // Stops execution of action at set interval
+          secondsLeft = 0;
           clearInterval(timerInterval);
+          inputInitials();
         }
+        timeEl.textContent = 'Time Remaining: ' + secondsLeft;
     
       }, 1000);
 }
@@ -132,6 +179,7 @@ function startTime() {
 
 
 startButton.addEventListener('click', start);
+
 qOptionsEls.addEventListener('click', function(event) {
     
   console.log(event.target.textContent);
@@ -143,7 +191,7 @@ qOptionsEls.addEventListener('click', function(event) {
     score++;
 
     if (qNumber === jsQuestion.length-1) {
-      inputInitials();
+      secondsLeft = 0;
     } else {
       qNumber++;
       generateQuestion();
@@ -154,12 +202,14 @@ qOptionsEls.addEventListener('click', function(event) {
     secondsLeft -= 10;
 
     if (qNumber === jsQuestion.length-1) {
-      inputInitials();
+      secondsLeft = 0;
     } else {
       qNumber++;
       generateQuestion();
     }
 
   }
+
+
 
 })
