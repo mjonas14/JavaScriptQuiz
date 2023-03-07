@@ -93,6 +93,7 @@ function generateQuestion() {
   op4.textContent = jsOption[qNumber][3];
 }
 
+// Input initials at the end of the quiz
 function inputInitials() {
 
   qOptionsEls.style.display = 'none';
@@ -110,18 +111,17 @@ function inputInitials() {
   formEl.appendChild(inputEl);
   formEl.appendChild(submitEl);
 
+  // Store initials and score to localstorage
   submitEl.addEventListener('click', function() {
-
-    console.log(inputEl);
-    console.log(inputEl.textContent);
-
-    localStorage.setItem('Name',stringify(inputEl));
+  
+    localStorage.setItem(inputEl.value, score);
 
     finalScreen();
 
   });
 }
 
+// Screen allowing user to pick to restart the quiz or go to scoreboard
 function finalScreen() {
   body.textContent = 'What would you like to do?';
 
@@ -150,17 +150,36 @@ function finalScreen() {
     startTime();
   })
 
+  // If scoreboard button is clicked go to the scoreboard
   scoreBtn.addEventListener('click', function() {
 
     body.textContent = 'Scoreboard:';
+
+    for (var x in localStorage) {
+
+      var player = document.createElement('h2');
+      var playerScore = document.createElement('h2');
+      body.appendChild(player);
+      body.appendChild(playerScore);
+
+      player.textContent = localStorage.getItem(x);
+    }
+
+    // Recreate Start Quiz Button
+    var formEl2 = document.createElement('form');
+    var restartBtn = document.createElement('button');
+    restartBtn.classList.add('start-button');
+    restartBtn.style.marginTop = '40px;'
+    restartBtn.textContent = 'Restart Quiz';
+  
+    body.appendChild(formEl2);
+    formEl2.appendChild(restartBtn);
 
   }) 
 
 }
 
-
-
-
+// Timer function
 function startTime() {
     var timerInterval = setInterval(function() {
         secondsLeft--;
@@ -176,12 +195,11 @@ function startTime() {
       }, 1000);
 }
 
-
-
-
-
+// If start button is clicked, start the quiz
 startButton.addEventListener('click', start);
 
+// For each option clicked, check if correct and adjust score and time remaining
+// If no questions are left, timer will go to zero and the quiz will end
 qOptionsEls.addEventListener('click', function(event) {
     
   console.log(event.target.textContent);

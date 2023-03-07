@@ -33,12 +33,20 @@ h2 {
     margin: 0 30% 0 30%;
 }
 
-.start-button, #buttons {
+.start-button {
     font-size: 20px;
     cursor: pointer;
     justify-items: center;
     height: 50px;
     width: 200px;
+}
+
+#buttons {
+    font-size: 20px;
+    cursor: pointer;
+    justify-items: center;
+    height: 50px;
+    width: 400px;
 }
 
 /* Hide the answer options initially */
