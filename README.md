@@ -4,7 +4,7 @@
 
 This webapplication is a JavaScript Quiz that users can have fun with while learning JavaScript. The Quiz consists of four questions. It will track your score and at the end allow you to input your initials and give you the option to either see the scoreboard or restart the quiz to try and get a better result. Enjoy!
 
-Link to application: https://mjonas14.github.io/JavaScriptQuiz/?
+Link to application: https://mjonas14.github.io/JavaScriptQuiz/
 
 ## Usage
 
