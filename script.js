@@ -114,7 +114,9 @@ function inputInitials() {
 
     console.log(inputEl);
     console.log(inputEl.textContent);
-    localStorage.setItem('Name',inputEl);
+
+    localStorage.setItem('Name',stringify(inputEl));
+
     finalScreen();
 
   });
